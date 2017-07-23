@@ -11,7 +11,12 @@ export const searchAirports = async (searchString, isDeparture) => {
     return await response.json();
 }
 
-export const searchFlights = (request) => async (dispatch) => {
+export const searchFlights = (request) => async (dispatch, getState) => {
+
+    const isRequestSameWithState = compareRequestWithState(request, getState);
+    if (isRequestSameWithState) {
+        return;
+    }
 
     dispatch({
         type: SEARCH_REQUEST,
@@ -56,4 +61,17 @@ const generateApiRequest = (request) => {
     }
 
     return apiRequest;
+}
+
+const compareRequestWithState = (request, getState) => {
+
+    const state = getState();
+    const newRequst = JSON.stringify(generateApiRequest(request));
+    const oldRequest = JSON.stringify(generateApiRequest(state.search.request));
+
+    if (newRequst === oldRequest) {
+        return true;
+    }
+
+    return false;
 }
