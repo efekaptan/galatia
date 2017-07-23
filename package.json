@@ -29,7 +29,7 @@
   "scripts": {
     "server": "cd server && node server.js",
     "client": "react-scripts start",
-    "start": "npm run server",
+    "start": "cd server && node server.js",
     "start-all": "npm-run-all -p server client",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
