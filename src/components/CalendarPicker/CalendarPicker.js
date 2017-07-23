@@ -31,7 +31,7 @@ class Picker extends React.Component {
                 {
                     ({ value }) => {
                         return (
-                            <input className="form-control" onChange={() => void (0)} value={(value && value.format('DD-MMM-YYYY')) || ''} />
+                            <input className="form-control" onChange={this.props.onChange} value={(value && value.format('DD-MMM-YYYY')) || ''} />
                         );
                     }
                 }

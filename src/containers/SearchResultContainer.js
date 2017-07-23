@@ -1,67 +1,79 @@
 import React from 'react';
 import moment from 'moment'
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import SearchResult from '../components/FlightSearch/SearchResult';
 
-class SearchResultContainer extends React.Component {
-    getDetails = () => {
-        const flightDetails = [];
-        for (let tripOptionId of this.props.tripOptionIds) {
-            var tripOption = this.props.tripOptions[tripOptionId];
-            const flightDetail = {
-                id: tripOptionId,
-                saleTotal: tripOption.saleTotal,
-                segments: []
-            };
+const SearchResultContainer = ({ details }) => (
+    <SearchResult
+        flightDetails={details}
+    />
+)
 
-            for (let slice of tripOption.slice) {
-                flightDetail.duration = slice.duration;
+const entitiesSelector = state => state.search.response.entities;
 
-                for (let segment of slice.segment) {
-                    const leg = segment.leg[0];
-                    flightDetail.segments.push({
-                        id: segment.id,
-                        duration: segment.duration,
-                        flightNumber: segment.flight.carrier + "-" + segment.flight.number,
-                        carrier: this.props.carriers[segment.flight.carrier].name,
-                        arrivalTime: moment(leg.arrivalTime).format('LT'),
-                        arrivalDate: moment(leg.arrivalTime).format('ll'),
-                        departureTime: moment(leg.departureTime).format('LT'),
-                        departureDate: moment(leg.departureTime).format('ll'),
-                        originAirport: this.props.airports[leg.origin].name,
-                        originalCity: this.props.cities[this.props.airports[leg.origin].city].name,
-                        destinationAirport: this.props.airports[leg.destination].name,
-                        destinationCity: this.props.cities[this.props.airports[leg.destination].city].name,
-                        cabin: segment.cabin
-                    })
-                }
+const tripResponseSelector = createSelector(
+    entitiesSelector,
+    (entities) => entities.responses['qpxExpress#tripsSearch']
+)
+
+const tripOptionIdsSelector = createSelector(
+    entitiesSelector,
+    tripResponseSelector,
+    (entities, tripResponse) => (tripResponse && entities.trips[tripResponse.trips].tripOption) || []
+)
+
+const getDetails = (entities, tripOptionIds) => {
+    console.log('getdetails');
+    const flightDetails = [];
+    const tripOptions = entities.tripOptions;
+    const carriers = entities.carriers;
+    const airports = entities.airports;
+    const cities = entities.cities;
+
+    for (let tripOptionId of tripOptionIds) {
+        var tripOption = tripOptions[tripOptionId];
+        const flightDetail = {
+            id: tripOptionId,
+            saleTotal: tripOption.saleTotal,
+            segments: []
+        };
+
+        for (let slice of tripOption.slice) {
+            flightDetail.duration = slice.duration;
+
+            for (let segment of slice.segment) {
+                const leg = segment.leg[0];
+                flightDetail.segments.push({
+                    id: segment.id,
+                    duration: segment.duration,
+                    flightNumber: segment.flight.carrier + "-" + segment.flight.number,
+                    carrier: carriers[segment.flight.carrier].name,
+                    arrivalTime: moment(leg.arrivalTime).format('LT'),
+                    arrivalDate: moment(leg.arrivalTime).format('ll'),
+                    departureTime: moment(leg.departureTime).format('LT'),
+                    departureDate: moment(leg.departureTime).format('ll'),
+                    originAirport: airports[leg.origin].name,
+                    originalCity: cities[airports[leg.origin].city].name,
+                    destinationAirport: airports[leg.destination].name,
+                    destinationCity: cities[airports[leg.destination].city].name,
+                    cabin: segment.cabin
+                })
             }
-            flightDetails.push(flightDetail);
         }
-        return flightDetails;
+        flightDetails.push(flightDetail);
     }
-
-    render() {
-        const flightDetails = this.getDetails();
-
-        return (
-            <SearchResult
-                flightDetails={flightDetails}
-            />
-        )
-    }
+    return flightDetails;
 }
 
+const detailsSelector = createSelector(
+    entitiesSelector, tripOptionIdsSelector,
+    getDetails
+)
+
 const mapStateToProps = state => {
-    const entities = state.search.response.entities;
-    const tripResponse = entities.responses['qpxExpress#tripsSearch'];
-    const tripOptionIds = (tripResponse && entities.trips[tripResponse.trips].tripOption) || [];
     return {
-        tripOptionIds: tripOptionIds,
-        tripOptions: entities.tripOptions,
-        carriers: entities.carriers,
-        airports: entities.airports,
-        cities: entities.cities
+        details: detailsSelector(state)
     }
 };
 
