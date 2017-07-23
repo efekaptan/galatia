@@ -32,7 +32,7 @@ const SidebarSearchForm = (props) =>
         </div>
         <div className="form-group form-group-sm form-group-icon-left">
             <i className="fa fa-calendar input-icon input-icon-highlight"></i>
-            <label>Departing</label>
+            <label>Departure</label>
             <CalendarPicker field="departureDate" onChange={props.onDateSelect} value={props.departureDate} />
         </div>
         <div className="form-group form-group-sm form-group-icon-left">
@@ -44,6 +44,11 @@ const SidebarSearchForm = (props) =>
             <label>Passengers</label>
             <NumericInput onChange={props.onSetPassengerCount} value={props.passengerCount} />
         </div>
+        {props.errorMessage ?
+                <div className="input-group mb-3 has-danger">
+                    <div className="form-control-feedback">{props.errorMessage}</div>
+                </div>
+                : null}
         <button className="btn btn-primary" type="button" onClick={props.onSearchClick} disabled={props.isLoading}>Change</button>
     </form>
 

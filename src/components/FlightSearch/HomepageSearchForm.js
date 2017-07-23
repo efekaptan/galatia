@@ -4,7 +4,7 @@ import CalendarPicker from '../CalendarPicker/';
 import NumericInput from '../NumericInput/';
 import { airPortSelector, autoSuggestRender } from '../../utils/';
 
-const HomepageSearchForm = (props) => (
+const HomepageSearchForm = (props) =>
     <div>
         <h2>Search for Cheap Flights</h2>
         <form>
@@ -42,7 +42,7 @@ const HomepageSearchForm = (props) => (
                 <div className="col-md-3">
                     <div className="form-group form-group-lg form-group-icon-left">
                         <i className="fa fa-calendar input-icon input-icon-highlight"></i>
-                        <label>Departing</label>
+                        <label>Departure</label>
                         <CalendarPicker field="departureDate" onChange={props.onDateSelect} value={props.departureDate} />
                     </div>
                 </div>
@@ -60,9 +60,12 @@ const HomepageSearchForm = (props) => (
                     </div>
                 </div>
             </div>
+            {props.errorMessage ?
+                <div className="input-group mb-3 has-danger">
+                    <div className="form-control-feedback">{props.errorMessage}</div>
+                </div>
+                : null}
             <button className="btn btn-primary btn-lg" type="button" onClick={props.onSearchClick} disabled={props.isLoading}>Search for Flights</button>
         </form>
     </div>
-)
-
 export default HomepageSearchForm;

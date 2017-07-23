@@ -13,7 +13,7 @@ class FlightSearchContainer extends React.Component {
             arrivalAirport: emptyAirport,
             departureAirports: [],
             arrivalAirports: [],
-            passengerCount: 1
+            passengerCount: 1,
         }
     }
 
@@ -34,7 +34,10 @@ class FlightSearchContainer extends React.Component {
 
         const inputKey = isDeparture ? "departureAirport" : "arrivalAirport";
         this.setState({
-            [inputKey]: { search: value }
+            [inputKey]: {
+                ...emptyAirport,
+                search: value
+            }
         })
     }
 
@@ -62,16 +65,46 @@ class FlightSearchContainer extends React.Component {
     }
 
     onSearchClick = () => {
+        const isFormValid = this.validateForm()
+        if (!isFormValid) {
+            return;
+        }
+
         this.props.searchFlights(this.state).then(
-            (result) => void (0)
+            (result) => console.log(result),
+            (message) => console.log(message)
         )
+
         this.context.router.history.push('/search');
+    }
+
+    validateForm = () => {
+        if (this.state.departureAirport.code === '' || this.state.arrivalAirport.code === '') {
+            this.setErrorMessage('Please select departure and arrival airports from auto complete list');
+            return false;
+        }
+
+        if (!this.state.departureDate) {
+            this.setErrorMessage('Please select departure date');
+            return false;
+        }
+
+        this.setErrorMessage(null);
+
+        return true;
+    }
+
+    setErrorMessage = (message) => {
+        this.setState({
+            errorMessage: message
+        })
     }
 
     componentWillUpdate = (nextProps, nextState) => {
         if (this.props.request !== nextProps.request) {
             this.setState({
-                ...nextProps.request
+                ...nextProps.request,
+                errorMessage: null
             });
         }
     }
@@ -79,7 +112,8 @@ class FlightSearchContainer extends React.Component {
     componentWillMount = () => {
         if (this.props.request) {
             this.setState({
-                ...this.props.request
+                ...this.props.request,
+                errorMessage: null
             });
         }
     }
@@ -100,6 +134,7 @@ class FlightSearchContainer extends React.Component {
             onSearchClick={this.onSearchClick}
             position={this.props.position}
             isLoading={this.props.isLoading}
+            errorMessage={this.state.errorMessage}
         />
 }
 
