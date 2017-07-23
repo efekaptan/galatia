@@ -49,18 +49,18 @@ const HomepageSearchForm = (props) => (
                 <div className="col-md-3">
                     <div className="form-group form-group-lg form-group-icon-left">
                         <i className="fa fa-calendar input-icon input-icon-highlight"></i>
-                        <label>Returning</label>
+                        <label>Return</label>
                         <CalendarPicker field="arrivalDate" onChange={props.onDateSelect} value={props.arrivalDate} />
                     </div>
                 </div>
                 <div className="col-md-6">
                     <div className="form-group form-group-lg">
                         <label>Passengers</label>
-                        <NumericInput onChange={props.onSetPassengerCount} />
+                        <NumericInput onChange={props.onSetPassengerCount} value={props.passengerCount} />
                     </div>
                 </div>
             </div>
-            <button className="btn btn-primary btn-lg" type="button" onClick={props.onSearchClick}>Search for Flights</button>
+            <button className="btn btn-primary btn-lg" type="button" onClick={props.onSearchClick} disabled={props.isLoading}>Search for Flights</button>
         </form>
     </div>
 )

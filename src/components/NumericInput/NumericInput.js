@@ -36,6 +36,22 @@ class NumericInput extends React.Component {
         this.props.onChange(newValue);
     }
 
+    componentWillUpdate = (nextProps, nextState) => {
+        if (this.state.currentValue !== nextProps.value) {
+            this.setState({
+                currentValue: nextProps.value
+            });
+        }
+    }
+
+    componentWillMount = () => {
+        if (this.props.value) {
+            this.setState({
+                currentValue: this.props.value
+            });
+        }
+    }
+
     render() {
         return (
             <div className="input-group numeric-input">

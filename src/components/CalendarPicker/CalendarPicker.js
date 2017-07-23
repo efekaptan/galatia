@@ -7,7 +7,7 @@ import './CalendarPicker.css';
 import enUS from 'rc-calendar/lib/locale/en_US';
 
 const CalendarPicker = ({ field, onChange, value }) => {
-    if (value && typeof value === "string") {
+    if (value) {
         value = moment(value);
     }
 

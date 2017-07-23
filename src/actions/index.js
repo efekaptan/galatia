@@ -1,4 +1,5 @@
 import { normalize } from 'normalizr';
+import moment from 'moment';
 import responseSchema from '../utils/schema';
 import { SEARCH_REQUEST, SEARCH_RESULT } from './actionTypes';
 import configuration from '../configuration';
@@ -44,7 +45,7 @@ const generateApiRequest = (request) => {
                 {
                     origin: request.departureAirport.code,
                     destination: request.arrivalAirport.code,
-                    date: request.departureDate.format('YYYY-MM-DD')
+                    date: moment(request.departureDate).format('YYYY-MM-DD')
                 }
             ],
             passengers: {

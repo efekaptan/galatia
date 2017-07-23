@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ResultList = ({ flightDetails }) =>
+const ResultList = ({ details }) =>
     <ul className="booking-list">
-        {flightDetails.map(detail =>
+        {details.map(detail =>
             <li key={detail.id}>
                 <div className="booking-item-container">
                     <div className="booking-item">

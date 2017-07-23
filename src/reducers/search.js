@@ -20,13 +20,15 @@ export default (state = defaultState, action) => {
             return {
                 ...state,
                 request: action.request,
-                receivedAt: action.receivedAt
+                receivedAt: action.receivedAt,
+                isLoading: true
             };
         case SEARCH_RESULT:
             return {
                 ...state,
                 response: action.response,
-                receivedAt: action.receivedAt
+                receivedAt: action.receivedAt,
+                isLoading: false
             };
         default:
             return state;

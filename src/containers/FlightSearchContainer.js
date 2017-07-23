@@ -96,8 +96,10 @@ class FlightSearchContainer extends React.Component {
             arrivalDate={this.state.arrivalDate}
             onDateSelect={this.onDateSelect}
             onSetPassengerCount={this.onSetPassengerCount}
+            passengerCount={this.state.passengerCount}
             onSearchClick={this.onSearchClick}
             position={this.props.position}
+            isLoading={this.props.isLoading}
         />
 }
 
@@ -105,7 +107,8 @@ const emptyAirport = { search: '', city: '', code: '', country: '' };
 
 const mapStateToProps = state => {
     return {
-        request: state.search.request
+        request: state.search.request,
+        isLoading: state.search.isLoading
     }
 }
 

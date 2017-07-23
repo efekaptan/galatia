@@ -37,14 +37,14 @@ const SidebarSearchForm = (props) =>
         </div>
         <div className="form-group form-group-sm form-group-icon-left">
             <i className="fa fa-calendar input-icon input-icon-highlight"></i>
-            <label>Returning</label>
+            <label>Return</label>
             <CalendarPicker field="arrivalDate" onChange={props.onDateSelect} value={props.arrivalDate} />
         </div>
         <div className="form-group">
             <label>Passengers</label>
-            <NumericInput onChange={props.onSetPassengerCount} />
+            <NumericInput onChange={props.onSetPassengerCount} value={props.passengerCount} />
         </div>
-        <button className="btn btn-primary" type="button" onClick={props.onSearchClick}>Change</button>
+        <button className="btn btn-primary" type="button" onClick={props.onSearchClick} disabled={props.isLoading}>Change</button>
     </form>
 
 export default SidebarSearchForm;
