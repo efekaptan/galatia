@@ -7,14 +7,11 @@
     "express": "^4.15.3",
     "lowdb": "^0.16.2",
     "moment": "^2.18.1",
-    "nodemon": "^1.11.0",
     "normalizr": "^3.2.3",
-    "npm-run-all": "^4.0.2",
     "prop-types": "^15.5.10",
     "rc-calendar": "^8.4.6",
     "react": "^15.6.1",
     "react-autocomplete": "^1.5.9",
-    "react-scripts": "1.0.10",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
@@ -25,11 +22,15 @@
     "superagent": "^3.5.2"
   },
   "devDependencies": {
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
+    "react-scripts": "1.0.10"
   },
   "scripts": {
     "server": "cd server && nodemon server.js",
     "client": "react-scripts start",
-    "start": "npm-run-all -p server client",
+    "start": "npm run server",
+    "start-all": "npm-run-all -p server client",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
