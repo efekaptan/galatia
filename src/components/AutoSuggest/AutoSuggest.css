@@ -1,0 +1,11 @@
+.item {
+    padding: 5px 10px;
+    cursor: default
+}
+
+.highlighted-item {
+    color: #fff;
+    background: rgb(63, 149, 191);
+    padding: 5px 10px;
+    cursor: default
+}

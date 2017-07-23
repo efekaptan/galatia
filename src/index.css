@@ -1,0 +1,462 @@
+body {
+    background-color: #225378;
+}
+
+h1 {
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.navbar {
+    background-color: #ECF0F1;
+}
+
+.search-tabs>.tabbable>.tab-content>.tab-pane {
+    padding: 15px;
+}
+
+.search-tabs>.tabbable>.nav-tabs>li>a {
+    text-transform: uppercase;
+}
+
+.search-tabs-bg>.tabbable>.tab-content>.tab-pane {
+    background: #ECF0F1;
+    padding: 25px;
+    -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
+}
+
+.search-tabs-bg>.tabbable>.tab-content>.tab-pane .form-control {
+    background: #fff;
+}
+
+.search-tabs-bg>.tabbable>.nav-tabs {
+    border: none;
+}
+
+.search-tabs-bg>.tabbable>.nav-tabs>li {
+    margin-bottom: 0;
+    margin-right: 5px;
+}
+
+.search-tabs-bg>.tabbable>.nav-tabs>li>a {
+    background: rgba(0, 0, 0, 0.4);
+    border: none !important;
+    color: #fff;
+}
+
+@media (max-width:992px) {
+    .search-tabs-bg>.tabbable>.nav-tabs>li>a>span {
+        display: none;
+    }
+}
+
+.search-tabs-bg>.tabbable>.nav-tabs>li>a:hover>.fa {
+    background: #e74c3c;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.search-tabs-bg>.tabbable>.nav-tabs>li>a>.fa {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 2px;
+    background: rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.search-tabs-bg>.tabbable>.nav-tabs>li>a.active {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.search-tabs-bg>.tabbable>.nav-tabs>li>a.active:hover>.fa {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+label {
+    font-weight: 400;
+    display: block;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group.form-group-lg {
+    margin-bottom: 25px;
+}
+
+.form-group.form-group-lg .input-icon {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 22px;
+}
+
+.form-group.form-group-lg.form-group-icon-left .form-control {
+    padding-left: 45px;
+}
+
+.form-group.form-group-lg.form-group-icon-right .form-control {
+    padding-right: 45px;
+}
+
+.form-group.form-group-lg label {
+    font-size: 16px;
+    margin-bottom: 7px;
+}
+
+.form-group.form-group-lg .form-control {
+    height: 45px;
+    padding: 10px 18px;
+}
+
+.form-group.form-group-sm {
+    margin-bottom: 10px;
+}
+
+.form-group.form-group-sm .input-icon {
+    top:37px;
+    left:2px;
+}
+
+.form-group.form-group-icon-left .form-control {
+    padding-left: 32px;
+}
+
+.form-group.form-group-icon-right .form-control {
+    padding-right: 32px;
+}
+
+.form-group .input-icon {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    display: block;
+    top: 29px;
+    left: 1px;
+    text-align: center;
+    color: #b3b3b3;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s;
+    z-index: 2;
+}
+
+.form-group .input-icon.input-icon-show {
+    -webkit-transform: translate3d(0, -10px, 0);
+    -moz-transform: translate3d(0, -10px, 0);
+    -o-transform: translate3d(0, -10px, 0);
+    -ms-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}
+
+.form-group .input-icon.input-icon-show+label+.form-control {
+    padding: 6px 12px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.form-group.form-group-icon-right .input-icon {
+    right: 1px;
+    left: auto;
+}
+
+.form-group.form-group-focus .input-icon {
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.form-group.form-group-focus .input-icon.input-icon-hightlight {
+    color: #e74c3c;
+}
+
+.form-group.form-group-focus .input-icon.input-icon-show {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+}
+
+.form-group.form-group-focus .input-icon.input-icon-show+label+.form-control {
+    padding-left: 32px;
+}
+
+.form-group.form-group-focus .input-icon.input-icon-bounce {
+    -webkit-animation: 1s bounce;
+    -moz-animation: 1s bounce;
+    -o-animation: 1s bounce;
+    -ms-animation: 1s bounce;
+    animation: 1s bounce;
+}
+
+.form-group.form-group-focus .input-icon.input-icon-swing {
+    -webkit-animation: 1s swing;
+    -moz-animation: 1s swing;
+    -o-animation: 1s swing;
+    -ms-animation: 1s swing;
+    animation: 1s swing;
+}
+
+.form-group.form-group-focus .input-icon.input-icon-tada {
+    -webkit-animation: 1s tada;
+    -moz-animation: 1s tada;
+    -o-animation: 1s tada;
+    -ms-animation: 1s tada;
+    animation: 1s tada;
+}
+
+.form-group.form-group-focus .input-icon.input-icon-shake {
+    -webkit-animation: 1s shake;
+    -moz-animation: 1s shake;
+    -o-animation: 1s shake;
+    -ms-animation: 1s shake;
+    animation: 1s shake;
+}
+
+.form-control {
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    line-height: 1.6em;
+}
+
+.form-control:active,
+.form-control:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #e74c3c;
+}
+
+.help-block {
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.checkbox,
+.radio {
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.checkbox-inline label,
+.radio-inline label {
+    cursor: pointer;
+}
+
+.radio-inline+.radio-inline,
+.checkbox-inline+.checkbox-inline {
+    margin-left: 15px;
+}
+
+label.label-focus {
+    color: #e74c3c;
+    -webkit-animation: label-anim 0.5s;
+    -moz-animation: label-anim 0.5s;
+    -o-animation: label-anim 0.5s;
+    -ms-animation: label-anim 0.5s;
+    animation: label-anim 0.5s;
+}
+
+.btn-group-select-num>.btn {
+    -webkit-border-radius: 50% !important;
+    border-radius: 50% !important;
+    height: 28px;
+    line-height: 26px;
+    width: 28px;
+    padding: 0;
+    background: none;
+    color: #737373;
+    border: 1px solid transparent;
+}
+
+.btn-group-select-num>.btn:hover {
+    color: #737373;
+    border-color: #737373;
+    background: none;
+}
+
+.btn-group-select-num>.btn.active,
+.btn-group-select-num>.btn.active:hover {
+    background: #e74c3c;
+    border-color: #e74c3c;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+}
+
+.form-group-lg .btn-group-select-num {
+    margin-top: 3px;
+}
+
+.form-group-lg .btn-group-select-num>.btn {
+    height: 35px;
+    line-height: 32px;
+    width: 35px;
+}
+
+.btn {
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    -ms-transition: 0.2s;
+    transition: 0.2s;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.btn:hover {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.btn>.fa,
+.btn>.im {
+    margin: 0 5px;
+}
+
+.btn-primary,
+.btn-primary:hover {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.list-page h3 {
+    color: #fff;
+}
+
+.booking-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.booking-list>li {
+    margin-bottom: 15px;
+    position: relative;
+    background-color: #fff;
+}
+
+.booking-item {
+    display: block;
+    position: relative;
+    padding: 17px;
+    border: 1px solid #e6e6e6;
+    color: #737373;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -o-transition: 0.2s;
+    -ms-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.booking-item:hover,
+.booking-item.active {
+    color: #737373;
+    border: 1px solid #e74c3c;
+    -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.booking-item:hover .booking-item-number,
+.booking-item.active .booking-item-number {
+    background: #808080;
+}
+
+.booking-item-price {
+    font-size: 36px;
+    color: #626262;
+    line-height: 1em;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.booking-item-flight-details {
+    overflow: hidden;
+}
+
+.booking-item-flight-details .booking-item-departure,
+.booking-item-flight-details .booking-item-arrival {
+    float: left;
+    width: 47%;
+}
+
+.booking-item-flight-details .booking-item-departure .fa-plane,
+.booking-item-flight-details .booking-item-arrival .fa-plane {
+    float: left;
+    display: block;
+    font-size: 30px;
+    margin-right: 5px;
+    position: relative;
+    top: 4px;
+}
+
+.booking-item-flight-details .booking-item-departure h5,
+.booking-item-flight-details .booking-item-arrival h5 {
+    margin-bottom: 0;
+}
+
+.booking-item-flight-details .booking-item-departure .booking-item-date,
+.booking-item-flight-details .booking-item-arrival .booking-item-date {
+    margin-bottom: 7px;
+    line-height: 1em;
+    padding-left: 32px;
+}
+
+.booking-item-flight-details .booking-item-departure {
+    margin-right: 6%;
+}
+
+.booking-item-flight-details .booking-item-destination {
+    line-height: 1.3em;
+    font-size: 13px;
+}
+
+.booking-item-airline-logo>p {
+    margin-bottom: 0;
+    margin-top: 5px;
+    line-height: 1.3em;
+    font-weight: 600;
+}
+
+.booking-item-airline-logo>img {
+    width: 40px;
+}
+
+.booking-item-flight-class {
+    margin-bottom: 7px;
+    margin-top: -5px;
+    color: #8f8f8f;
+    line-height: 1em;
+    font-size: 13px;
+}
+
+.booking-item-dates-change {
+    padding: 15px 20px;
+    background-color: #fff;
+}
