@@ -30,10 +30,10 @@
     "server": "cd server && nodemon server.js",
     "client": "react-scripts start",
     "start": "npm run server",
-    "start-all": "npm-run-all -p server client",
+    "dev": "npm-run-all -p server client",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:5000"
 }

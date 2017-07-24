@@ -40,8 +40,7 @@ router.get('/airports', (req, res) => {
 
     const result = db.get('airports').filter((element) => {
         return element.code.toLowerCase().indexOf(searchString) > -1 ||
-            element.city.toLowerCase().indexOf(searchString) > -1 ||
-            element.country.toLowerCase().indexOf(searchString) > -1;
+            element.city.toLowerCase().indexOf(searchString) > -1
     });
 
     res.send(JSON.stringify(result.take(10).value()));

@@ -70,10 +70,7 @@ class FlightSearchContainer extends React.Component {
             return;
         }
 
-        this.props.searchFlights(this.state).then(
-            (result) => console.log(result),
-            (message) => console.log(message)
-        )
+        this.props.searchFlights(this.state);
 
         this.context.router.history.push('/search');
     }
