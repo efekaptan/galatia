@@ -1,10 +1,17 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const path = require('path');
 const low = require('lowdb')
 const fileAsync = require('lowdb/lib/storages/file-async')
 const request = require('superagent');
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, '/../build')));
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 const router = express.Router();
 app.use('/api', router);
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -56,4 +63,6 @@ const updateKey = (key) => {
         .write()
 }
 
-app.listen(3001, () => console.log('Server is listening'))
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log('Server is listening on ' + port))
