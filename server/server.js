@@ -7,11 +7,6 @@ const request = require('superagent');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '/../build')));
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 const router = express.Router();
 app.use('/api', router);
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -51,6 +46,11 @@ router.get('/airports', (req, res) => {
 
     res.send(JSON.stringify(result.take(10).value()));
 })
+
+app.use(express.static(path.join(__dirname, '/../build')));
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const updateKey = (key) => {
     db.get('keys')
