@@ -2,8 +2,8 @@ import { SEARCH_REQUEST, SEARCH_RESULT } from '../actions/actionTypes';
 
 const defaultState = {
     request: {
-        departureAirport: {},
-        arrivalAirport: {}
+        departureAirport: { search: '', city: '', code: '', country: '' },
+        arrivalAirport: { search: '', city: '', code: '', country: '' }
     },
     response: {
         entities: {

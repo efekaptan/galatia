@@ -9,6 +9,18 @@ const HomepageSearchForm = (props) =>
         <h2>Search for Cheap Flights</h2>
         <form>
             <div className="row">
+                <div className="col-md-12 trip-tabs mt-2 mb-2">
+                    <ul className="nav nav-tabs" role="tablist">
+                        <li className="nav-item">
+                            <a className="nav-link active" data-toggle="tab" role="tab">Round Trip</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" data-toggle="tab" role="tab">One way</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div className="row">
                 <div className="col-md-6">
                     <div className="form-group form-group-lg form-group-icon-left">
                         <i className="fa fa-map-marker input-icon"></i>

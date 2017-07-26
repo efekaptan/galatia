@@ -9,8 +9,8 @@ class FlightSearchContainer extends React.Component {
         super(props, context);
 
         this.state = {
-            departureAirport: emptyAirport,
-            arrivalAirport: emptyAirport,
+            departureAirport: {},
+            arrivalAirport: {},
             departureAirports: [],
             arrivalAirports: [],
             passengerCount: 1,
@@ -35,7 +35,7 @@ class FlightSearchContainer extends React.Component {
         const inputKey = isDeparture ? "departureAirport" : "arrivalAirport";
         this.setState({
             [inputKey]: {
-                ...emptyAirport,
+                ...this.state[inputKey],
                 search: value
             }
         })
@@ -134,8 +134,6 @@ class FlightSearchContainer extends React.Component {
             errorMessage={this.state.errorMessage}
         />
 }
-
-const emptyAirport = { search: '', city: '', code: '', country: '' };
 
 const mapStateToProps = state => {
     return {

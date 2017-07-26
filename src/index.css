@@ -49,6 +49,9 @@ h1 {
     .search-tabs-bg>.tabbable>.nav-tabs>li>a>span {
         display: none;
     }
+    .result-tabs .nav-link span {
+        display: none;
+    }
 }
 
 .search-tabs-bg>.tabbable>.nav-tabs>li>a:hover>.fa {
@@ -124,8 +127,8 @@ label {
 }
 
 .form-group.form-group-sm .input-icon {
-    top:37px;
-    left:2px;
+    top: 37px;
+    left: 2px;
 }
 
 .form-group.form-group-icon-left .form-control {
@@ -344,6 +347,7 @@ label.label-focus {
 .btn-primary:hover {
     background-color: #e74c3c;
     border-color: #e74c3c;
+    cursor: pointer;
 }
 
 .list-page h3 {
@@ -459,4 +463,53 @@ label.label-focus {
 .booking-item-dates-change {
     padding: 15px 20px;
     background-color: #fff;
+}
+
+.result-tabs .nav-tabs,
+.search-tabs .nav-tabs {
+    border: 0px;
+}
+
+.result-tabs .nav-item {
+    margin-right: 5px;
+}
+
+.result-tabs .nav-link {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none !important;
+    text-transform: uppercase;
+}
+
+.result-tabs .nav-link.active {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.result-tabs .nav-link .fa {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 2px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    text-align: center;
+}
+
+.trip-tabs .nav-link {
+    padding: 4px 10px;
+    border-radius: .25rem;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.trip-tabs .nav-link.active {
+    background-color: #143248;
+    color: #fff !important;
+    border: 0px;
+}
+
+.trip-tabs .nav-link:hover {
+    border-color: #ECF0F1;
 }

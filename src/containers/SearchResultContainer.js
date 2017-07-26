@@ -49,7 +49,7 @@ const getDetails = (entities, tripOptionIds) => {
                     originalCity: cities[airports[leg.origin].city].name,
                     destinationAirport: airports[leg.destination].name,
                     destinationCity: cities[airports[leg.destination].city].name,
-                    cabin: segment.cabin
+                    cabin: segment.cabin === "COACH" ? "Economy" : segment.cabin
                 })
             }
         }
