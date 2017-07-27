@@ -9,11 +9,7 @@ class FlightSearchContainer extends React.Component {
         super(props, context);
 
         this.state = {
-            departureAirport: {},
-            arrivalAirport: {},
-            departureAirports: [],
-            arrivalAirports: [],
-            passengerCount: 1,
+            isRoundTrip: true
         }
     }
 
@@ -52,15 +48,9 @@ class FlightSearchContainer extends React.Component {
         })
     }
 
-    onDateSelect = (field, value) => {
+    onSetField = (field, value) => {
         this.setState({
             [field]: value
-        })
-    }
-
-    onSetPassengerCount = (value) => {
-        this.setState({
-            passengerCount: value
         })
     }
 
@@ -86,8 +76,12 @@ class FlightSearchContainer extends React.Component {
             return false;
         }
 
-        this.setErrorMessage(null);
+        if (this.state.isRoundTrip && !this.state.returnDate) {
+            this.setErrorMessage('Please select return date');
+            return false;
+        }
 
+        this.setErrorMessage(null);
         return true;
     }
 
@@ -117,6 +111,8 @@ class FlightSearchContainer extends React.Component {
 
     render = () =>
         <FlightsSearchForm
+            onSetField={this.onSetField}
+            isRoundTrip={this.state.isRoundTrip}
             departureAirport={this.state.departureAirport.search}
             departureAirports={this.state.departureAirports}
             arrivalAirport={this.state.arrivalAirport.search}
@@ -124,9 +120,7 @@ class FlightSearchContainer extends React.Component {
             onAirportChange={this.onAirportChange}
             onAirportSelect={this.onAirportSelect}
             departureDate={this.state.departureDate}
-            arrivalDate={this.state.arrivalDate}
-            onDateSelect={this.onDateSelect}
-            onSetPassengerCount={this.onSetPassengerCount}
+            returnDate={this.state.returnDate}
             passengerCount={this.state.passengerCount}
             onSearchClick={this.onSearchClick}
             position={this.props.position}

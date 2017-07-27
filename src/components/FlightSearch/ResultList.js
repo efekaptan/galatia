@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ResultList = ({ details }) =>
+const ResultList = ({ result }) =>
     <ul className="booking-list">
-        {details.map(detail =>
+        {result.map(detail =>
             <li key={detail.id}>
                 <div className="booking-item-container">
                     <div className="booking-item">

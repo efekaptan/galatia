@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr';
 import moment from 'moment';
 import responseSchema from '../utils/schema';
-import { SEARCH_REQUEST, SEARCH_RESULT } from './actionTypes';
+import { SEARCH_REQUEST, DEPARTURE_SEARCH_RESULT, RETURN_SEARCH_RESULT } from './actionTypes';
 import configuration from '../configuration';
 
 const apiUrl = configuration.apiUrl;
@@ -11,11 +11,21 @@ export const searchAirports = async (searchString, isDeparture) => {
     return await response.json();
 }
 
+export const searchReturnFlights = (request) => async (dispatch, getState) => {
+    const returnRequest = {
+        ...request,
+        isReturn: true
+    }
+
+    return dispatch(searchFlights(returnRequest));
+}
+
 export const searchFlights = (request) => async (dispatch, getState) => {
 
+    //No need to make expensive api call if request parameters are same with current state
     const isRequestSameWithState = compareRequestWithState(request, getState);
     if (isRequestSameWithState) {
-        return;
+        //return;
     }
 
     dispatch({
@@ -37,20 +47,30 @@ export const searchFlights = (request) => async (dispatch, getState) => {
     const normalizedData = normalize(JSON.parse(responseData), responseSchema);
 
     return dispatch({
-        type: SEARCH_RESULT,
+        type: request.isReturn ? RETURN_SEARCH_RESULT : DEPARTURE_SEARCH_RESULT,
         response: normalizedData,
         receivedAt: Date.now()
     });
 }
 
 const generateApiRequest = (request) => {
+    let origin = request.departureAirport.code;
+    let destination = request.arrivalAirport.code;
+    let date = request.departureDate;
+
+    if (request.isReturn) {
+        origin = request.arrivalAirport.code;
+        destination = request.departureAirport.code;
+        date = request.returnDate;
+    }
+
     const apiRequest = {
         request: {
             slice: [
                 {
-                    origin: request.departureAirport.code,
-                    destination: request.arrivalAirport.code,
-                    date: moment(request.departureDate).format('YYYY-MM-DD')
+                    origin: origin,
+                    destination: destination,
+                    date: moment(date).format('YYYY-MM-DD')
                 }
             ],
             passengers: {
@@ -66,10 +86,20 @@ const generateApiRequest = (request) => {
 const compareRequestWithState = (request, getState) => {
 
     const state = getState();
-    const newRequst = JSON.stringify(generateApiRequest(request));
+
+    //Serilize departure request to compare with current state request
+    const departureRequest = JSON.stringify(
+        generateApiRequest(request)
+    );
+
+    //Serilize returning request to compare with current state request
+    const returnRequest = JSON.stringify(
+        generateApiRequest(request)
+    );
+
     const oldRequest = JSON.stringify(generateApiRequest(state.search.request));
 
-    if (newRequst === oldRequest) {
+    if (departureRequest === oldRequest || returnRequest === oldRequest) {
         return true;
     }
 

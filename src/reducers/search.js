@@ -1,18 +1,35 @@
-import { SEARCH_REQUEST, SEARCH_RESULT } from '../actions/actionTypes';
+import { SEARCH_REQUEST, DEPARTURE_SEARCH_RESULT, RETURN_SEARCH_RESULT } from '../actions/actionTypes';
+
+const airportRequest = {
+    search: '',
+    city: '',
+    code: '',
+    country: ''
+}
+
+const entitiesResponse = {
+    responses: {},
+    trips: {},
+    tripOption: [],
+    carriers: [],
+    airports: [],
+    cities: []
+}
 
 const defaultState = {
     request: {
-        departureAirport: { search: '', city: '', code: '', country: '' },
-        arrivalAirport: { search: '', city: '', code: '', country: '' }
+        departureAirport: airportRequest,
+        arrivalAirport: airportRequest,
+        departureAirports: [],
+        arrivalAirports: [],
+        passengerCount: 1
     },
     response: {
-        entities: {
-            responses: {},
-            trips: {},
-            tripOption: [],
-            carriers: [],
-            airports: [],
-            cities: []
+        departure: {
+            entities: entitiesResponse
+        },
+        return: {
+            entities: entitiesResponse
         }
     }
 }
@@ -26,10 +43,23 @@ export default (state = defaultState, action) => {
                 receivedAt: action.receivedAt,
                 isLoading: true
             };
-        case SEARCH_RESULT:
+        case DEPARTURE_SEARCH_RESULT:
             return {
                 ...state,
-                response: action.response,
+                response: {
+                    ...state.response,
+                    departure: action.response
+                },
+                receivedAt: action.receivedAt,
+                isLoading: false
+            };
+        case RETURN_SEARCH_RESULT:
+            return {
+                ...state,
+                response: {
+                    ...state.response,
+                    return: action.response
+                },
                 receivedAt: action.receivedAt,
                 isLoading: false
             };

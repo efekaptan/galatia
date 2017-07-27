@@ -1,9 +1,10 @@
 import moment from 'moment'
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import { searchFlights, searchReturnFlights } from '../actions/';
 import SearchResult from '../components/FlightSearch/SearchResult';
 
-const entitiesSelector = state => state.search.response.entities;
+const entitiesSelector = response => response.entities;
 
 const tripResponseSelector = createSelector(
     entitiesSelector,
@@ -16,7 +17,7 @@ const tripOptionIdsSelector = createSelector(
     (entities, tripResponse) => (tripResponse && entities.trips[tripResponse.trips].tripOption) || []
 )
 
-const getDetails = (entities, tripOptionIds) => {
+const getResultModel = (entities, tripOptionIds) => {
     const flightDetails = [];
     const tripOptions = entities.tripOptions;
     const carriers = entities.carriers;
@@ -58,16 +59,23 @@ const getDetails = (entities, tripOptionIds) => {
     return flightDetails;
 }
 
-const detailsSelector = createSelector(
+const resultSelector = createSelector(
     entitiesSelector, tripOptionIdsSelector,
-    getDetails
+    getResultModel
 )
 
 const mapStateToProps = state => {
     return {
-        details: detailsSelector(state),
+        departureResult: resultSelector(state.search.response.departure),
+        returnResult: resultSelector(state.search.response.return),
+        request: state.search.request,
         isLoading: state.search.isLoading
     }
 };
 
-export default connect(mapStateToProps)(SearchResult);
+const mapDispatchToProps = {
+    searchFlights,
+    searchReturnFlights
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);

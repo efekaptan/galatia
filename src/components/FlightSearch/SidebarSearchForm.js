@@ -6,6 +6,18 @@ import { airPortSelector, autoSuggestRender } from '../../utils/';
 
 const SidebarSearchForm = (props) =>
     <form className="booking-item-dates-change">
+        <div className="row">
+            <div className="col-md-12 trip-tabs mt-2 mb-2 sidebar-tabs">
+                <ul className="nav nav-tabs" role="tablist">
+                    <li className="nav-item">
+                        <a className={toggleClass(props.isRoundTrip)} data-toggle="tab" role="tab" onClick={() => props.onSetField('isRoundTrip', true)}>Round Trip</a>
+                    </li>
+                    <li className="nav-item">
+                        <a className={toggleClass(!props.isRoundTrip)} data-toggle="tab" role="tab" onClick={() => props.onSetField('isRoundTrip', false)}>One way</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div className="form-group form-group-sm form-group-icon-left">
             <i className="fa fa-map-marker input-icon"></i>
             <label>From</label>
@@ -33,23 +45,25 @@ const SidebarSearchForm = (props) =>
         <div className="form-group form-group-sm form-group-icon-left">
             <i className="fa fa-calendar input-icon input-icon-highlight"></i>
             <label>Departure</label>
-            <CalendarPicker field="departureDate" onChange={props.onDateSelect} value={props.departureDate} />
+            <CalendarPicker onChange={(field, value) => props.onSetField('departureDate', value)} value={props.departureDate} />
         </div>
-        <div className="form-group form-group-sm form-group-icon-left">
+        <div className={"form-group form-group-sm form-group-icon-left" + (props.isRoundTrip ? " show" : " hide")}>
             <i className="fa fa-calendar input-icon input-icon-highlight"></i>
             <label>Return</label>
-            <CalendarPicker field="arrivalDate" onChange={props.onDateSelect} value={props.arrivalDate} />
+            <CalendarPicker onChange={(field, value) => props.onSetField('returnDate', value)} value={props.returnDate} />
         </div>
         <div className="form-group">
             <label>Passengers</label>
-            <NumericInput onChange={props.onSetPassengerCount} value={props.passengerCount} />
+            <NumericInput onChange={(value) => props.onSetField('passengerCount', value)} value={props.passengerCount} />
         </div>
         {props.errorMessage ?
-                <div className="input-group mb-3 has-danger">
-                    <div className="form-control-feedback">{props.errorMessage}</div>
-                </div>
-                : null}
+            <div className="input-group mb-3 has-danger">
+                <div className="form-control-feedback">{props.errorMessage}</div>
+            </div>
+            : null}
         <button className="btn btn-primary" type="button" onClick={props.onSearchClick} disabled={props.isLoading}>Change</button>
     </form>
+
+const toggleClass = (value) => "nav-link" + (value ? " active" : "");
 
 export default SidebarSearchForm;

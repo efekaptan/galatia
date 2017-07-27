@@ -7,6 +7,14 @@ h1 {
     margin-bottom: 25px;
 }
 
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
 .navbar {
     background-color: #ECF0F1;
 }
@@ -393,7 +401,8 @@ label.label-focus {
 }
 
 .booking-item-price {
-    font-size: 36px;
+    font-size: 30px;
+    font-weight: 500;
     color: #626262;
     line-height: 1em;
     display: inline-block;
@@ -466,7 +475,8 @@ label.label-focus {
 }
 
 .result-tabs .nav-tabs,
-.search-tabs .nav-tabs {
+.search-tabs .nav-tabs,
+.sidebar-tabs .nav-tabs {
     border: 0px;
 }
 
