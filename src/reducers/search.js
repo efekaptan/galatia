@@ -18,6 +18,7 @@ const entitiesResponse = {
 
 const defaultState = {
     request: {
+        isRoundTrip: true,
         departureAirport: airportRequest,
         arrivalAirport: airportRequest,
         departureAirports: [],

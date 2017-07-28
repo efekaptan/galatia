@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { searchFlights, searchReturnFlights } from '../actions/';
+import { searchDepartureFlights, searchReturnFlights } from '../actions/';
 import SearchResult from '../components/FlightSearch/SearchResult';
 
 const entitiesSelector = response => response.entities;
@@ -65,16 +65,19 @@ const resultSelector = createSelector(
 )
 
 const mapStateToProps = state => {
+    const search = state.search;
     return {
-        departureResult: resultSelector(state.search.response.departure),
-        returnResult: resultSelector(state.search.response.return),
-        request: state.search.request,
-        isLoading: state.search.isLoading
+        departureResult: resultSelector(search.response.departure),
+        returnResult: resultSelector(search.response.return),
+        request: search.request,
+        isLoading: search.isLoading,
+        isDeparture: search.request.requestType === "departure",
+        isReturn: search.request.requestType === "return"
     }
 };
 
 const mapDispatchToProps = {
-    searchFlights,
+    searchDepartureFlights,
     searchReturnFlights
 }
 

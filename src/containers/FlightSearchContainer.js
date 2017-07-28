@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import { searchAirports, searchFlights } from '../actions/';
+import { searchAirports, searchDepartureFlights } from '../actions/';
 import { connect } from 'react-redux';
 import FlightsSearchForm from '../components/FlightSearch/FlightsSearchForm';
 
@@ -8,9 +8,7 @@ class FlightSearchContainer extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {
-            isRoundTrip: true
-        }
+        this.state = {}
     }
 
     static contextTypes = {
@@ -60,7 +58,7 @@ class FlightSearchContainer extends React.Component {
             return;
         }
 
-        this.props.searchFlights(this.state);
+        this.props.searchDepartureFlights(this.state);
 
         this.context.router.history.push('/search');
     }
@@ -137,7 +135,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    searchFlights
+    searchDepartureFlights
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlightSearchContainer);

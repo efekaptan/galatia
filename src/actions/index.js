@@ -11,22 +11,25 @@ export const searchAirports = async (searchString, isDeparture) => {
     return await response.json();
 }
 
+export const searchDepartureFlights = (request) => async (dispatch, getState) => {
+    const departureRequest = {
+        ...request,
+        requestType: "departure"
+    }
+
+    return dispatch(searchFlights(departureRequest));
+}
+
 export const searchReturnFlights = (request) => async (dispatch, getState) => {
     const returnRequest = {
         ...request,
-        isReturn: true
+        requestType: "return"
     }
 
     return dispatch(searchFlights(returnRequest));
 }
 
 export const searchFlights = (request) => async (dispatch, getState) => {
-
-    //No need to make expensive api call if request parameters are same with current state
-    const isRequestSameWithState = compareRequestWithState(request, getState);
-    if (isRequestSameWithState) {
-        //return;
-    }
 
     dispatch({
         type: SEARCH_REQUEST,
@@ -47,7 +50,7 @@ export const searchFlights = (request) => async (dispatch, getState) => {
     const normalizedData = normalize(JSON.parse(responseData), responseSchema);
 
     return dispatch({
-        type: request.isReturn ? RETURN_SEARCH_RESULT : DEPARTURE_SEARCH_RESULT,
+        type: request.requestType === "departure" ? DEPARTURE_SEARCH_RESULT : RETURN_SEARCH_RESULT,
         response: normalizedData,
         receivedAt: Date.now()
     });
@@ -58,7 +61,7 @@ const generateApiRequest = (request) => {
     let destination = request.arrivalAirport.code;
     let date = request.departureDate;
 
-    if (request.isReturn) {
+    if (request.requestType === "return") {
         origin = request.arrivalAirport.code;
         destination = request.departureAirport.code;
         date = request.returnDate;
@@ -81,27 +84,4 @@ const generateApiRequest = (request) => {
     }
 
     return apiRequest;
-}
-
-const compareRequestWithState = (request, getState) => {
-
-    const state = getState();
-
-    //Serilize departure request to compare with current state request
-    const departureRequest = JSON.stringify(
-        generateApiRequest(request)
-    );
-
-    //Serilize returning request to compare with current state request
-    const returnRequest = JSON.stringify(
-        generateApiRequest(request)
-    );
-
-    const oldRequest = JSON.stringify(generateApiRequest(state.search.request));
-
-    if (departureRequest === oldRequest || returnRequest === oldRequest) {
-        return true;
-    }
-
-    return false;
 }
