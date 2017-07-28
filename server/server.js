@@ -4,6 +4,7 @@ const path = require('path');
 const low = require('lowdb')
 const fileAsync = require('lowdb/lib/storages/file-async')
 const request = require('superagent');
+const cache = require('memory-cache');
 
 const app = express();
 
@@ -23,13 +24,21 @@ router.post('/trips/search', (req, res) => {
 
     const key = db.get('keys').first().value();
 
+    const cacheKey = JSON.stringify(req.body);
+    if (cache.get(cacheKey)) {
+        res.send(cache.get(cacheKey))
+        return;
+    }
+
     request
         .post(`${apiUrl}/trips/search?key=${key.apiKey}`)
         .send(req.body)
         .set('Accept', 'application/json')
         .end(function (err, response) {
-            updateKey(key);
-            res.send(JSON.stringify(response.text))
+            const result = JSON.stringify(response.text);
+            //cache result for 1 hour
+            cache.put(cacheKey, result, 60 * 60 * 1000);
+            res.send(result)
         });
 })
 
@@ -50,17 +59,6 @@ app.use(express.static(path.join(__dirname, '/../build')));
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname, '/../build', 'index.html'));
 });
-
-const updateKey = (key) => {
-    db.get('keys')
-        .find({ apiKey: key.apiKey })
-        .assign({
-            apiKey: key.apiKey,
-            remaining: key.remaining - 1,
-            lastAccess: new Date()
-        })
-        .write()
-}
 
 const port = process.env.PORT || 5000;
 
