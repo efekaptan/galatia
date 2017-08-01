@@ -23,7 +23,7 @@ const SearchResult = (props) =>
                       <span>Departure</span>
                     </a>
                   </li>
-                  <li className={"nav-item " + props.request.isRoundTrip ? "show" : "hide"}>
+                  <li className={"nav-item " + (props.isRoundTrip ? "" : "hide")}>
                     <a className={getTabClass(props.isReturn)} id="profile-tab" data-toggle="tab" href="#return" role="tab"
                       aria-controls="return" aria-expanded="false" onClick={() => props.searchReturnFlights(props.request)}>
                       <i className="fa fa-mail-reply"></i>

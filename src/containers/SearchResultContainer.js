@@ -71,6 +71,7 @@ const mapStateToProps = state => {
         returnResult: resultSelector(search.response.return),
         request: search.request,
         isLoading: search.isLoading,
+        isRoundTrip: search.request.isRoundTrip,
         isDeparture: search.request.requestType === "departure",
         isReturn: search.request.requestType === "return"
     }
