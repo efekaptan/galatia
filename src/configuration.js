@@ -1,7 +1,7 @@
 const configuration = {};
 
 if (process.env.NODE_ENV === 'production') {
-    configuration.apiUrl = 'https://arcane-caverns-50573.herokuapp.com/api';
+    configuration.apiUrl = 'http://galatia.reactjs.world/api';
 } else {
     configuration.apiUrl = 'http://localhost:3000/api';
 }
