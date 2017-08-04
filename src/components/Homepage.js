@@ -1,5 +1,6 @@
 import React from 'react';
 import FlightSearchContainer from '../containers/FlightSearchContainer';
+import HotelSearch from './HotelSearch/';
 
 const Homepage = () => (
     <div className="row">
@@ -24,7 +25,7 @@ const Homepage = () => (
                             <FlightSearchContainer position="homepage" />
                         </div>
                         <div className="tab-pane" id="hotels" role="tabpanel">
-                            Hotels content
+                            <HotelSearch />
                         </div>
                     </div>
                 </div>

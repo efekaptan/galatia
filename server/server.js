@@ -19,29 +19,6 @@ const db = low('db.json', {
 
 const apiUrl = db.get('apiUrl').value();
 
-router.post('/trips/search', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-
-    const key = db.get('keys').first().value();
-
-    const cacheKey = JSON.stringify(req.body);
-    if (cache.get(cacheKey)) {
-        res.send(cache.get(cacheKey))
-        return;
-    }
-
-    request
-        .post(`${apiUrl}/trips/search?key=${key.apiKey}`)
-        .send(req.body)
-        .set('Accept', 'application/json')
-        .end(function (err, response) {
-            const result = JSON.stringify(response.text);
-            //cache result for 1 hour
-            cache.put(cacheKey, result, 60 * 60 * 1000);
-            res.send(result)
-        });
-})
-
 router.get('/airports', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
@@ -54,6 +31,67 @@ router.get('/airports', (req, res) => {
 
     res.send(JSON.stringify(result.take(10).value()));
 })
+
+router.post('/trips/search', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    const cacheKey = JSON.stringify(req.body);
+    if (cache.get(cacheKey)) {
+        res.send(cache.get(cacheKey))
+        return;
+    }
+
+    const key = getApiKey();
+
+    if (!key) {
+        res.status(500).send('Invalid api key!')
+        return;
+    }
+
+    request
+        .post(`${apiUrl}/trips/search?key=${key.apiKey}`)
+        .send(req.body)
+        .set('Accept', 'application/json')
+        .end(function (err, response) {
+
+            //cache result for 1 hour
+            const result = JSON.stringify(response.text);
+            cache.put(cacheKey, result, 60 * 60 * 1000);
+
+            incrementApiKeyUsageCount(key);
+
+            res.send(result)
+        });
+})
+
+const getApiKey = () => {
+    const keys = db.get('keys').filter((element) =>
+        !element.lastAccess || element.usageCount < 50 || hasOneDayPassed(element.lastAccess)
+    ).value();
+
+    if (keys.length) {
+        return keys[0];
+    }
+
+    return "";
+}
+
+const incrementApiKeyUsageCount = (key) => {
+    const now = new Date();
+
+    db.get('keys')
+        .find({ apiKey: key.apiKey })
+        .assign({
+            apiKey: key.apiKey,
+            usageCount: hasOneDayPassed(key.lastAccess) ? 1 : key.usageCount + 1,
+            lastAccess: now
+        })
+        .write()
+}
+
+const hasOneDayPassed = (lastAccess) => {
+    return (Math.abs(new Date() - new Date(lastAccess)) / 36e5) > 24
+}
 
 app.use(express.static(path.join(__dirname, '/../build')));
 app.get('/*', function (req, res) {
