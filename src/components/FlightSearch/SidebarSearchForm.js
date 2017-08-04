@@ -50,7 +50,7 @@ const SidebarSearchForm = (props) =>
         <div className={"form-group form-group-sm form-group-icon-left" + (props.isRoundTrip ? " show" : " hide")}>
             <i className="fa fa-calendar input-icon input-icon-highlight"></i>
             <label>Return</label>
-            <CalendarPicker onChange={(field, value) => props.onSetField('returnDate', value)} value={props.returnDate} />
+            <CalendarPicker onChange={(field, value) => props.onSetField('returnDate', value)} value={props.returnDate} startDate={props.departureDate} />
         </div>
         <div className="form-group">
             <label>Passengers</label>

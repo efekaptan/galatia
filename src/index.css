@@ -523,3 +523,10 @@ label.label-focus {
 .trip-tabs .nav-link:hover {
     border-color: #ECF0F1;
 }
+
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: #fff;
+    opacity: 1;
+    cursor: pointer;
+}

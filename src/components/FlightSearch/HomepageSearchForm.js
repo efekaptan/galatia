@@ -62,7 +62,7 @@ const HomepageSearchForm = (props) =>
                     <div className="form-group form-group-lg form-group-icon-left">
                         <i className="fa fa-calendar input-icon input-icon-highlight"></i>
                         <label>Return</label>
-                        <CalendarPicker onChange={(field, value) => props.onSetField('returnDate', value)} value={props.returnDate} />
+                        <CalendarPicker onChange={(field, value) => props.onSetField('returnDate', value)} value={props.returnDate} startDate={props.departureDate} />
                     </div>
                 </div>
                 <div className="col-md-3">
