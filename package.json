@@ -28,10 +28,10 @@
   },
   "scripts": {
     "postinstall": "npm run build",
-    "server": "cd server && nodemon server.js",
+    "server": "cd server && node server.js",
     "client": "react-scripts start",
     "start": "npm run server",
-    "dev": "npm-run-all -p server client",
+    "dev": "npm-run-all -p client server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
