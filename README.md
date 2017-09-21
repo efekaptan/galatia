@@ -16,7 +16,7 @@ Flight search results come from [Google QPX Express Api](https://developers.goog
 
 Npm scripts are ready to deploy on Heroku. `npm run postinstall` script called automatically by Heroku CI pipeline. To deploy on Heroku just execute:
 
-- `git push Heroku`
+- `git push heroku`
 
 ## Overview of libraries
 
