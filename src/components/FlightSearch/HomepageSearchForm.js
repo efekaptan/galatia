@@ -32,6 +32,7 @@ const HomepageSearchForm = (props) =>
                             onChange={(event, value) => props.onAirportChange(event, value, true)}
                             onSelect={(event, value) => props.onAirportSelect(event, value, true)}
                             renderItem={autoSuggestRender}
+                            placeHolder="Departure airport"
                         />
                     </div>
                 </div>
@@ -46,6 +47,7 @@ const HomepageSearchForm = (props) =>
                             onChange={props.onAirportChange}
                             onSelect={props.onAirportSelect}
                             renderItem={autoSuggestRender}
+                            placeHolder="Arrival airport"
                         />
                     </div>
                 </div>

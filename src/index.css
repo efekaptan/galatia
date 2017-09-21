@@ -15,6 +15,18 @@ h1 {
     display: none;
 }
 
+.clear {
+    clear: both;
+}
+
+.right {
+    float: right;
+}
+
+.main {
+    min-height: calc(100vh - 130px);
+}
+
 .navbar {
     background-color: #ECF0F1;
 }
@@ -529,4 +541,21 @@ label.label-focus {
     background-color: #fff;
     opacity: 1;
     cursor: pointer;
+}
+
+.footer {
+    text-align: center;
+    width: 100%;
+    background-color: #143248;
+    color: #fff;
+    padding-top: 20px;
+    height: 74px;
+}
+
+.jumbotron {
+    padding: 2rem;
+}
+
+.jumbotron svg {
+    padding-right: 10px;
 }

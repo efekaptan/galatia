@@ -4,11 +4,12 @@ import Homepage from './Homepage';
 import About from './About';
 import SearchResultContainer from '../containers/SearchResultContainer';
 import Header from './Header';
+import Footer from './Footer';
 
 const App = () => (
     <div>
         <Header />
-        <div className="container">
+        <div className="container main">
             <Switch>
                 <Route path="/homepage" component={Homepage} />
                 <Route path="/search" component={SearchResultContainer} />
@@ -16,6 +17,7 @@ const App = () => (
                 <Redirect from="/" to="/homepage" />
             </Switch>
         </div>
+        <Footer />
     </div>
 )
 

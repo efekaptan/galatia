@@ -2,12 +2,12 @@ import React from 'react';
 import Autocomplete from 'react-autocomplete';
 import './AutoSuggest.css';
 
-const AutoSuggest = ({ inputValue, items, getItem, onChange, onSelect, renderItem }) =>
+const AutoSuggest = ({ inputValue, items, getItem, onChange, onSelect, renderItem, placeHolder }) =>
     <Autocomplete
         menuStyle={styles.menu}
         value={inputValue}
         wrapperStyle={{ display: "block" }}
-        inputProps={{ className: 'typeahead form-control' }}
+        inputProps={{ className: 'typeahead form-control', placeholder: placeHolder }}
         items={items}
         getItemValue={getItem}
         onChange={onChange}
