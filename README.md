@@ -1,6 +1,6 @@
 # Galatia
 
-![React Redux Node.js](https://image.ibb.co/bU8xyk/Capture.png)
+![React Redux Node.js](https://image.ibb.co/d9FAZQ/Capture.png)
 
 This project is a real-world demonstration of web tools such as React, Redux, Node.js and a couple more.
 
