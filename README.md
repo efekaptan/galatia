@@ -20,12 +20,14 @@ Npm scripts are ready to deploy on Heroku. `npm run postinstall` script called a
 
 ## Overview of libraries
 
- - Restful backend api implemented using Node.js Express framework. This backend is a proxy layer between UI and QPX Express Api. Which is useful to hide sensitive information from client side. (ex : Google Api Keys)
+ - Restful backend api implemented using `node.js` `express` framework. This backend is a proxy layer between UI and QPX Express Api. Having an api is useful to hide sensitive information from client side. (ex : Google Api Keys)
 
- - `lowdb` as super simple data access
+ - `lowdb` - super simple data access, a single json file for data storage
 
- - `create-react-app` as a starter boilerplate for client side React application
+ - `create-react-app` - a starter boilerplate for client side React application
 
- - Redux + Redux Thunk middleware + Normalizr
+ - `redux` + `redux-thunk` - state management between components 
 
- - `reselect` as memoized selector
+ - `normalizr` - normalized api result
+
+ - `reselect` - memoized selector
