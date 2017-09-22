@@ -47,7 +47,7 @@ export const searchFlights = (request) => async (dispatch, getState) => {
         });
 
     const responseData = await apiResponse.json();
-    const normalizedData = normalize(JSON.parse(responseData), responseSchema);
+    const normalizedData = normalize(responseData, responseSchema);
 
     return dispatch({
         type: request.requestType === "departure" ? DEPARTURE_SEARCH_RESULT : RETURN_SEARCH_RESULT,

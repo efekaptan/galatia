@@ -55,7 +55,7 @@ router.post('/trips/search', (req, res) => {
         .end(function (err, response) {
 
             //cache result for 1 hour
-            const result = JSON.stringify(response.text);
+            const result = JSON.parse(response.text);
             cache.put(cacheKey, result, 60 * 60 * 1000);
 
             incrementApiKeyUsageCount(key);
