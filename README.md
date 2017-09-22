@@ -1,5 +1,7 @@
 # Galatia
 
+![React Redux Node.js](https://image.ibb.co/bU8xyk/Capture.png)
+
 This project is a real-world demonstration of web tools such as React, Redux, Node.js and a couple more.
 
 Flight search results come from [Google QPX Express Api](https://developers.google.com/qpx-express/). 50 requests are free daily for a valid Google api key.
