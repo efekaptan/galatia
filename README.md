@@ -8,7 +8,7 @@ This project is a real-world demonstration of web tools such as React, Redux, No
 
 Flight search results come from [Google QPX Express Api](https://developers.google.com/qpx-express/). 50 requests are free daily for a valid Google api key.
 
-## [Visit Demo](http://galatia.reactjs.world)
+## [Visit Demo](https://galatia.herokuapp.com/)
 
 ## Getting Started
 
