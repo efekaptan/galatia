@@ -1,7 +1,7 @@
 const configuration = {};
 
 if (process.env.NODE_ENV === 'production') {
-    configuration.apiUrl = 'http://galatia.reactjs.world/api';
+    configuration.apiUrl = 'https://galatia.herokuapp.com/api';
 } else {
     configuration.apiUrl = 'http://localhost:3000/api';
 }

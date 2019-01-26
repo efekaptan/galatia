@@ -1,5 +1,7 @@
 # Galatia
 
+Update : The QPX Express API service ended on April 10, 2018. Sorry :(
+
 ![React Redux Node.js](https://image.ibb.co/d9FAZQ/Capture.png)
 
 This project is a real-world demonstration of web tools such as React, Redux, Node.js and a couple more.
